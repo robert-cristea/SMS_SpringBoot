@@ -7,29 +7,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class AuthController {
     @Autowired
     StudentService studentService;
 
-    @RequestMapping(value="/login")
-    public String goLogin() {
-        return "auth/login";
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public ModelAndView login() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("auth/login");
+        return modelAndView;
     }
-
-    @RequestMapping(value="/login", method = RequestMethod.POST)
-    public String doLogin(LoginRequest loginRequest) {
-
-        Student student = studentService.findByByEmail(loginRequest.getEmail());
-        System.out.println(student);
-
-        if(student != null) {
-            if(student.getPassword().matches(loginRequest.getPassword())) {
-                System.out.println("hello");
-                return "redirect:/home";
-            }
-        }
-        return "redirect:/login";
-    }
+//    }
 }

@@ -3,6 +3,7 @@ package com.project.sms.controller;
 import java.util.List;
 import java.util.Optional;
 
+import com.project.sms.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -20,7 +21,8 @@ public class StudentController {
 
 	@Autowired
 		StudentService studentService;
-
+	@Autowired
+	private AuthService authService;
 
 
 	/*
@@ -53,8 +55,7 @@ public class StudentController {
 	 * */
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String saveStudent(Student student) {
-		System.out.println(student);
-		studentService.saveOrUpdateStudent(student);
+		authService.saveUser(student);
 		return "redirect:/student/list";
 	}
 }

@@ -1,7 +1,11 @@
 package com.project.sms.model;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import java.util.Set;
 
 
 @Document(collection = "Student")
@@ -15,6 +19,10 @@ public class Student {
 	private String email; //email address
 	private String password; // password
 	private Boolean rememberMe; //remeber Me checkbox
+
+	@DBRef
+	private Set<Role> roles;
+
 	public String getId() {
 		return id;
 	}
@@ -69,5 +77,13 @@ public class Student {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
 	}
 }
