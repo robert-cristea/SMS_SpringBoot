@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Student Management System</title>
+    <link crossorigin="anonymous"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <h1>Student Management System</h1>
+    <hr>
+    <h2>Save Student</h2>
+
+    <form action="#" method="POST" th:action="@{/student/save}"
+          th:object="${student}">
+        <input class="form-control mb-4 col-4" placeholder="Student First Name"
+               th:field="*{firstName}" type="text">
+
+        <input class="form-control mb-4 col-4" placeholder="Student SurName"
+               th:field="*{lastName}" type="text">
+
+        <input class="form-control mb-4 col-4" placeholder="Student Phone"
+               th:field="*{phone}" type="text">
+        <input class="form-control mb-4 col-4" placeholder="Student Email"
+               th:field="*{email}" type="text">
+        <input class="form-control mb-4 col-4" placeholder="Student Password"
+               th:field="*{password}" type="password">
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1" th:field="*{rememberMe}">
+            <label class="form-check-label" for="exampleCheck1">Remeber Me</label>
+        </div>
+        <button class="btn btn-info col-2" type="submit"> Save Student</button>
+    </form>
+
+    <hr>
+
+    <a th:href="@{/student/list}"> Back to Student List</a>
+</div>
+</body>
+</html>
